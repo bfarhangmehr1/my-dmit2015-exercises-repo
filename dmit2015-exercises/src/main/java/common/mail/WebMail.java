@@ -15,6 +15,8 @@ import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.jasypt.util.text.StrongTextEncryptor;
+
 import com.sun.mail.pop3.POP3SSLStore;
 
 public class WebMail {
@@ -43,7 +45,12 @@ public class WebMail {
 			// 8) Get a "Transport" from the session
 			currentTransport = currentSesion.getTransport("smtps");
 			// 9) Connect the transport to a named host using a username and password
-			currentTransport.connect("smtp.gmail.com", "farhangbehnam06", "Behfar1361");
+			//StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+			//textEncryptor.setPassword("Password2015");
+			//String PlainTextPassword = textEncryptor.decrypt("3ZExV0rXD2lNmNwdauW0L8ICyjTZQcty");
+			currentTransport.connect("smtp.gmail.com", "farhangbehnam06", "PlainTextPassword");
+			
+			
 			// 10) Send the message to all recipients over the transport
 			currentTransport.sendMessage(currentMessage, currentMessage.getAllRecipients());
 			System.out.println("Send mail message was successful");
