@@ -1,5 +1,7 @@
 package dmit2015.model;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 public class LoanSchedule {
       private int  paymentNumber;
       private double interestPaid;
@@ -61,6 +63,20 @@ public class LoanSchedule {
 		return "LoanSchedule [paymentNumber=" + paymentNumber + ", interestPaid=" + interestPaid + ", remainingBalance="
 				+ remainingBalance + ", principlePaid=" + principlePaid + "]";
 	}  
-	
+	public double getMounthlyPayment() {
+		Random rand = new Random();
+		double mortgageAmount = rand.nextInt(1000000) + 1;
+		double annualInterestRate = 1;
+		int amortizationPeriod = 1;		
+		return Math.round(((mortgageAmount * (Math.pow(1+(annualInterestRate/200),(1/6)))-1)/(1-(Math.pow(Math.pow(1 + (annualInterestRate/200), (1/6)), (-12* amortizationPeriod))))) * 100.0)/100.0 ;
+	}
+	public Object[] getLoanScheduleArray() {
+		double annualInterestRate = 1;
+		List<String> LoanSchedule = new ArrayList <String>();  
+		
+		String monthlyPercentageRate = double.toString(Math.pow(1+(annualInterestRate/200), (1/6))-1);
+		double interestPaid = monthlyPercentageRate * remainingBalance;
+		double principlePaid = getMounthlyPayment() * interestPaid;
+	}
 	
 }
