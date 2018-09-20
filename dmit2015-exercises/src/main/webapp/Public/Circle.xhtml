@@ -22,17 +22,17 @@
        <b:jumbotron> 
        		<h1>Circle Calculator</h1>
        </b:jumbotron>
-       <b: messages id="messages"></b:>
-       <b:form id = "circleForm">
-       <b: inputText id="radius" label="Circle Radius:" value="#{circleController.currentCircle.radius}"> </b:>
+       <b:messages id="messages"></b:>
+       <b:form id="circleForm">
+       <b:inputText id="radius" label="Circle Radius:" value="#{circleController.currentCircle.radius}"> </b:>
        
        <b:focus></b:focus>
        </b:inputText>
-       <b: commandButton value = "Circle Area" actionListener="#{circleController.calculatorArea()}" ajax = "true", update ="messages">
+       <b:commandButton value ="Circle Area" actionListener="#{circleController.calculatorArea()}" ajax = "true", update ="messages">
         </b:commandButton>
-         <b: commandButton value = "Circle Circumference" actionListener="#{circleController.calculateCircumference()}" ajax = "true", update ="messages">
+         <b:commandButton value ="Circle Circumference" actionListener="#{circleController.calculateCircumference()}" ajax = "true", update ="messages">
         </b:commandButton>
-         <b: commandButton value = "Circle Diameter" actionListener="#{circleController.calculatediameter()}" ajax = "true", update ="messages">
+         <b:commandButton value ="Circle Diameter" actionListener="#{circleController.calculatediameter()}" ajax = "true", update ="messages">
         </b:commandButton>
        </b:form>
         
