@@ -53,12 +53,15 @@
        		    var="rect" >       			 
        			<b:dataTableColumn label="Payment Number" value="#{rect.paymentNumber}">
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Interest Paid" value="#{rect.interestPaid}">
+       			<b:dataTableColumn label="Interest Paid" value="#{rect.interestPaid}" >
+       			<f:convertNumber pattern="#000.000" />
        			</b:dataTableColumn>
        			<b:dataTableColumn label="Principle Paid" value="#{rect.principlePaid}">
+       			<f:convertNumber pattern="#000.000" />
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Remaining Balance" value="#{rect.remainingBalance}">       			
-
+       			<b:dataTableColumn label="Remaining Balance" value="#{rect.remainingBalance}"> 
+       			<f:convertNumber pattern="#000.000" />      			
+                </b:dataTableColumn>
        		</b:dataTable>
 	    </form>
          
