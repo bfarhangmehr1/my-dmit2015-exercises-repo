@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.omnifaces.util.Messages;
+
 import dmit2015.model.Loan;
 import dmit2015.model.LoanSchedule;
 
@@ -16,18 +18,15 @@ import dmit2015.model.LoanSchedule;
 public class LoanController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Loan currentLoan = new Loan();  // + getter 
-	private ArrayList<LoanSchedule> loanScheduleTable = new ArrayList<>();  //+getter 
+	private Loan currentLoan = new Loan();  // + getter 	
 	
-	public void calculate() {
+	public void calculate() {		
+		Messages.addGlobalInfo(
+		 "Your montly payment is {0}", 
+		 currentLoan.getMounthlyPayment());		
 		
-		currentLoan.getLoanScheduleArray();
-				
-	}
-
-	public ArrayList<LoanSchedule> getLoanScheduleTable() {
-		return loanScheduleTable;
-	}
+		
+	}	
 	public Loan getCurrentLoan() {
 		return currentLoan;
 	}

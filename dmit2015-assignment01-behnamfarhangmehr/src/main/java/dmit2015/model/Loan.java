@@ -48,24 +48,24 @@ public Loan(double mortgageAmout, double annualInterestRate, int amortizationPer
 }
 public double getMounthlyPayment() {
 		
-	return Math.round(((mortgageAmout * (Math.pow(1+(annualInterestRate/200),(1/6)))-1)/(1-(Math.pow(Math.pow(1 + (annualInterestRate/200), (1/6)), (-12* amortizationPeriod))))) * 100.0)/100.0 ;
+	return Math.round(((mortgageAmout * (Math.pow(1+(annualInterestRate/200),(1.0/6.0)))-1)/(1-(Math.pow(Math.pow(1 + (annualInterestRate/200), (1.0/6.0)), (-12* amortizationPeriod))))) * 100.0)/100.0 ;
 }
 
- public  ArrayList<LoanSchedule> getLoanScheduleArray() {
-	 
+ public  ArrayList<LoanSchedule> getLoanScheduleArray() {	 
 	 ArrayList<LoanSchedule> loansckedule = new ArrayList<LoanSchedule>();
-	LoanSchedule  link = new LoanSchedule ();	
-	
-	
-	do {
-		loansckedule.add(link);
-		link = new LoanSchedule();
-	}while(link.getRemainingBalance()==0.00);
+	    
+	    double remaingBalance = mortgageAmout;
+	   for (int paymentNumber = 1; paymentNumber < (12 * amortizationPeriod); paymentNumber++) {
+		LoanSchedule  link = new LoanSchedule ();
+		link.setPaymentNumber(paymentNumber);
+		link.setInterestPaid(Math.round(getMonthlyPercentageRate() * remaingBalance  *100.0)/100.0);
+		link.setPrinciplePaid(Math.round(getMounthlyPayment() * link. getInterestPaid() * 100.0)/100.0);
+		remaingBalance = remaingBalance - link.getPrinciplePaid();
+		link.setRemainingBalance(remaingBalance);
+		loansckedule.add(link);		
+		}
 	
 	return loansckedule;
-	
-	//link.getInterestPaid() = Math.round( getMonthlyPercentageRate() * loansckedule.getRemainingBalance() *100.0)/100.0;
-	//link.getPrinciplePaid() = Math.round( getMounthlyPayment() * interestPaid * 100.0)/100.0;	
     
 }
 	public double getMonthlyPercentageRate() {

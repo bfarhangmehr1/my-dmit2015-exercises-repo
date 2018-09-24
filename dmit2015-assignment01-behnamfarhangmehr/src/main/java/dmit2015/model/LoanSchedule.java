@@ -17,8 +17,8 @@ public class LoanSchedule {
 	}
 	
 	public double getInterestPaid() {
-		Loan loan = new Loan();
-			return Math.round( loan.getMonthlyPercentageRate() *remainingBalance  *100.0)/100.0;
+		
+			return interestPaid;
 		
 	}
 	public void setInterestPaid(double interestPaid) {
@@ -27,8 +27,7 @@ public class LoanSchedule {
 		}		
 	}	
 	public double getRemainingBalance() {
-		Loan loan = new Loan();
-		remainingBalance = loan.getMortgageAmout()- getPrinciplePaid();
+				
 		 return remainingBalance;
 	}
 	public void setRemainingBalance(double remainingBalance) {
@@ -37,8 +36,8 @@ public class LoanSchedule {
 		}		
 	}
 	public double getPrinciplePaid() {
-		Loan loan = new Loan();
-		return  Math.round( loan.getMounthlyPayment() * getInterestPaid() * 100.0)/100.0;
+		
+		return principlePaid;
 	}
 	public void setPrinciplePaid(double principlePaid) {
 		if (principlePaid >0) {
