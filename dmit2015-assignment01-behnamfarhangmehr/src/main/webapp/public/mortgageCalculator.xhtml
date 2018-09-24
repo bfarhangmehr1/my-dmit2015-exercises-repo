@@ -14,12 +14,54 @@
 	<ui:param name="title" value="Mortgage Calculator" />
 
 	<ui:define name="maincontent">
+	  <h:head>
+        <!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<title>Mortgage Payment Calculator</title>		
+    </h:head>
+	
 		<b:jumbotron>
-			<h1>Mortgage Payment Calculator</h1>
+			<h1>Mortgage Payment Calculator</h1>			
 		</b:jumbotron>
+         <h2>Use the following form to calculate the monthly payment for fully amortization period </h2>
+          <b:messages id="messages"></b:messages>
+	    <form id = mortgageCalculator>
+	      <b:inputText id="mortgageAmount" 
+       			label="Mortgage Amount:" 
+       			placeholder="enter the mortgage amount"
+       			value="#{loanController.currentLoan.mortgageAmout}">
+       			</b:inputText>
+       			<b:focus></b:focus>
+       		     <b:inputText id="interestRate" 
+       			label="Interest Rate:" 
+       			placeholder="enter the interest rate"
+       			value="#{loanController.currentLoan.annualInterestRate}">
+       			</b:inputText>
+       			 <b:inputText id="amortizationPeriod" 
+       			label="amortizationPeriod:"        			
+       			value="#{loanController.currentLoan.amortizationPeriod}" type="Number">
+       			<f:validateLength minimum="1" maximum="25" />
+       			</b:inputText>
+       			 <b:commandButton value="Calculate"
+       			ajax="true" update="messages mortgageCalculator"
+       			actionListener="#{loanController.calculate()}">
+       		</b:commandButton>
+       		<b:dataTable id="ScheduleTable" 
+       		  value="#{loanController.loanScheduleTable}" 
+       		    var="rect" >       			 
+       			<b:dataTableColumn label="Payment Number" value="#{rect.paymentNumber}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Interest Paid" value="#{rect.interestPaid}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Principle Paid" value="#{rect.principlePaid}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Remaining Balance" value="#{rect.remainingBalance}">       			
 
-		<!-- Put your code for assignment 1 below here  -->
-
+       		</b:dataTable>
+	    </form>
+         
 
 
 

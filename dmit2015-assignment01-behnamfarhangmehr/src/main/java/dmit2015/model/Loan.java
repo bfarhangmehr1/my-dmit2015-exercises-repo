@@ -1,8 +1,6 @@
 package dmit2015.model;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Loan {
   private double mortgageAmout;
@@ -34,8 +32,7 @@ public int getAmortizationPeriod() {
 public void setAmortizationPeriod(int amortizationPeriod) {
 	if(amortizationPeriod>0) {
 		this.amortizationPeriod = amortizationPeriod;
-	}
-	
+	}	
 }
 public Loan() {
 	super();
@@ -54,19 +51,26 @@ public double getMounthlyPayment() {
 	return Math.round(((mortgageAmout * (Math.pow(1+(annualInterestRate/200),(1/6)))-1)/(1-(Math.pow(Math.pow(1 + (annualInterestRate/200), (1/6)), (-12* amortizationPeriod))))) * 100.0)/100.0 ;
 }
 
- public  List<Loan> getLoanScheduleArray() {
-	LoanSchedule  loansckedule = new LoanSchedule();
-	List<Loan> loans = new ArrayList<>();
-	
-	for(Loan result: loans) {
-	double monthlyPercentageRate = Math.round((Math.pow(1+(annualInterestRate/200), (1/6))-1) *100.0)/100.0;
-	double interestPaid =Math.round( monthlyPercentageRate * loansckedule.getRemainingBalance() *100.0)/100.0;
-	double principlePaid = Math.round( getMounthlyPayment() * interestPaid * 100.0)/100.0;
-	  result.add(interestPaid);
-	}
+ public  ArrayList<LoanSchedule> getLoanScheduleArray() {
+	 
+	 ArrayList<LoanSchedule> loansckedule = new ArrayList<LoanSchedule>();
+	LoanSchedule  link = new LoanSchedule ();	
 	
 	
+	do {
+		loansckedule.add(link);
+		link = new LoanSchedule();
+	}while(link.getRemainingBalance()==0.00);
+	
+	return loansckedule;
+	
+	//link.getInterestPaid() = Math.round( getMonthlyPercentageRate() * loansckedule.getRemainingBalance() *100.0)/100.0;
+	//link.getPrinciplePaid() = Math.round( getMounthlyPayment() * interestPaid * 100.0)/100.0;	
+    
 }
+	public double getMonthlyPercentageRate() {
+		return Math.round((Math.pow(1+(annualInterestRate/200), (1/6))-1) *100.0)/100.0;
+	}
 
 @Override
 public String toString() {
