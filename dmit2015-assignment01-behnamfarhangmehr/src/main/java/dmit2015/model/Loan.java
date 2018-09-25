@@ -48,7 +48,7 @@ public Loan(double mortgageAmout, double annualInterestRate, int amortizationPer
 }
 public double getMounthlyPayment() {
 		
-	return Math.round(((mortgageAmout * (Math.pow(1+(annualInterestRate/200),(1.0/6.0)))-1)/(1-(Math.pow(Math.pow(1 + (annualInterestRate/200), (1.0/6.0)), (-12* amortizationPeriod))))) * 100.0)/100.0 ;
+	return mortgageAmout *(Math.pow(1+(annualInterestRate/200),(1.0/6.0))-1)/1- Math.pow(Math.pow(1+(annualInterestRate/200), 1.0/6.0), -12 * amortizationPeriod);
 }
 
  public  ArrayList<LoanSchedule> getLoanScheduleArray() {	 
