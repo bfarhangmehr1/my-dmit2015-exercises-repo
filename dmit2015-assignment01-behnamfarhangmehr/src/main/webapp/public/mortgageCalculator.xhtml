@@ -27,7 +27,7 @@
 		</b:jumbotron>
          <h2>Use the following form to calculate the monthly payment for fully amortization period </h2>
           <b:messages id="messages"></b:messages>
-	    <form id = mortgageCalculator>
+	    <b:form id = "mortgageCalculator">
 	      <b:inputText id="mortgageAmount" 
        			label="Mortgage Amount:" 
        			placeholder="enter the mortgage amount"
@@ -45,7 +45,7 @@
        			<f:validateLength minimum="1" maximum="25" />
        			</b:inputText>
        			 <b:commandButton value="Calculate"
-       			ajax="true" update="messages mortgageCalculator:ScheduleTable"
+       			ajax="false" update="messages mortgageCalculator:ScheduleTable Chart"
        			actionListener="#{loanController.calculate()}">
        		</b:commandButton>
        		
@@ -54,20 +54,21 @@
        		    var="loa" >       			 
        			<b:dataTableColumn label="Payment Number" value="#{loa.paymentNumber}">
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Interest Paid" value="#{loa.interestPaid}" >
-       			<f:convertNumber pattern="#000.000" />
+       			<b:dataTableColumn label="Interest Paid" value="$#{loa.interestPaid}" >
+       			
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Principle Paid" value="#{loa.principlePaid}">
-       			<f:convertNumber pattern="#000.000" />
+       			<b:dataTableColumn label="Principle Paid" value="$#{loa.principlePaid}">
+       			
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Remaining Balance" value="#{loa.remainingBalance}"> 
-       			<f:convertNumber pattern="#000.000" />      			
+       			<b:dataTableColumn label="Remaining Balance" value="$#{loa.remainingBalance}"> 
+       			    			
                 </b:dataTableColumn>
        		</b:dataTable>
-	    </form>
+       		
+       		<p:chart id="Chart" type="bar" model="#{loanController.loanChart}" style="height:300px"/>
+       		
+	    </b:form>
          
-
-
 
 
 
