@@ -36,16 +36,14 @@ public class LoanController implements Serializable {
          double Amount = currentLoan.getMortgageAmout();
          for (int amoritization = 1 ; amoritization <=currentLoan.getAmortizationPeriod(); amoritization++) {
         	 LoanSchedule  link = new LoanSchedule ();
-        	 ChartSeries amor = new ChartSeries();
-        	 
-        	 currentLoan.setAmortizationPeriod(amoritization);
-        	 Amount = Amount-link.getRemainingBalance();
-        	 currentLoan.setMortgageAmout(Amount);
+        	 ChartSeries amor = new ChartSeries();        	 
         	 amor.set(amoritization, Amount );
-        	 
+        	 Amount = Amount-link.getPrinciplePaid(); 
+        	 model.addSeries(amor);
+
          }
          
-       return 
+       return model;
 	}
 
 	    public BarChartModel getBarModel() {
@@ -53,8 +51,19 @@ public class LoanController implements Serializable {
 	    }
 	
 	    private void createBarModels() {
-	        createBarModel();
+	    	 createBarModel();
 	       
+	    }
+	    private void createBarModel() {
+	    	loanChart = initBarModel();
+	    	Axis xAxis = loanChart.getAxis(AxisType.X);
+	        xAxis.setLabel("Amoritization Period");
+	        xAxis.setMin(1);
+	        xAxis.setMax(currentLoan.getAmortizationPeriod());
+	        Axis yAxis = loanChart.getAxis(AxisType.Y);
+	        yAxis.setLabel("Mortgage Amount");
+	        yAxis.setMin(0);
+	        yAxis.setMax(currentLoan.getMortgageAmout());
 	    }
 	    
 	public void calculate() {		
