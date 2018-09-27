@@ -53,15 +53,16 @@
        		  value="#{loanController.currentLoan.loanScheduleArray}" 
        		    var="loa" >       			 
        			<b:dataTableColumn label="Payment Number" value="#{loa.paymentNumber}">
-       			</b:dataTableColumn>
-       			<b:dataTableColumn label="Interest Paid" value="$#{loa.interestPaid}" >
        			
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Principle Paid" value="$#{loa.principlePaid}">
+       			<b:dataTableColumn label="Interest Paid" value="#{of:formatCurrency(loa.interestPaid,'$')}" >
        			
        			</b:dataTableColumn>
-       			<b:dataTableColumn label="Remaining Balance" value="$#{loa.remainingBalance}"> 
-       			    			
+       			<b:dataTableColumn label="Principle Paid" value="#{of:formatCurrency(loa.principlePaid,'$')}">
+       			
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Remaining Balance" value="#{of:formatCurrency(loa.remainingBalance,'$')}"> 
+       			    		
                 </b:dataTableColumn>
        		</b:dataTable>
        		

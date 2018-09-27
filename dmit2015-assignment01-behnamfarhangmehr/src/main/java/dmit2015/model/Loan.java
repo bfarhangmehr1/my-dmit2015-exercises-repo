@@ -65,18 +65,18 @@ public class Loan {
 		ArrayList<LoanSchedule> loansckedule = new ArrayList<LoanSchedule>();
 
 		double remaingBalance = mortgageAmout;
-		for (int paymentNumber = 1; paymentNumber < (12 * amortizationPeriod); paymentNumber++) {
+		for (int paymentNumber = 1; paymentNumber <= (12 * amortizationPeriod); paymentNumber++) {
 			LoanSchedule link = new LoanSchedule();
-			
+			link.setRemainingBalance(Math.round(remaingBalance * 100.0 )/100.0);
 			link.setPaymentNumber(paymentNumber);
-			link.setInterestPaid(Math.round(getMonthlyPercentageRate() * remaingBalance * 100.0) / 100.0);
-			link.setPrinciplePaid(Math.round(getMounthlyPayment() - link.getInterestPaid() * 100.0) / 100.0);
-			if (remaingBalance > getMounthlyPayment()) {
-				remaingBalance = link.getPrinciplePaid();
+			link.setInterestPaid( Math.round((getMonthlyPercentageRate() * remaingBalance) * 100.0) /100.0);
+			link.setPrinciplePaid(Math.round((getMounthlyPayment() - link.getInterestPaid()) * 100.0) / 100.0);
+			if (getMounthlyPayment() > remaingBalance) {
+				
+				link.setPrinciplePaid(remaingBalance);
 			}
-			remaingBalance = remaingBalance - link.getPrinciplePaid();
+			remaingBalance = Math.round((remaingBalance - link.getPrinciplePaid()) * 100.0)/100.0;
 			link.setRemainingBalance(remaingBalance);
-
 			loansckedule.add(link);
 		}
 
@@ -85,7 +85,7 @@ public class Loan {
 	}
 
 	public double getMonthlyPercentageRate() {
-		return  Math.round( (Math.pow(1 + (annualInterestRate / 200), (1.0 / 6.0)) - 1) *100.0 / 100.0);
+		return  Math.pow(1 + (annualInterestRate / 200), (1.0 / 6.0)) - 1;
 	}
 
 	@Override
