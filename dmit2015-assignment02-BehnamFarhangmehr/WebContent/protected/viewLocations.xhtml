@@ -16,8 +16,28 @@
 
 		<b:jumbotron>
 			<h1>List of Locations</h1>
-		</b:jumbotron>
-
+			<b:messages id="messages"></b:messages>
+		<b:form id="LocationForm">
+			<b:dataTable value="#{currentLocationController.locations}"
+				var="currentLocation">
+				<b:dataTableColumn label="LocationID" 
+					value="#{currentLocation.locationId}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Street Address" 
+					value="#{currentLocation.streetAddress}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Postal Code" 
+					value="#{currentLocation.postalCode}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Province"
+				value="#{currentLocation.stateProvince}">					
+				</b:dataTableColumn>								
+				<b:dataTableColumn label="Country"
+				value="#{currentLocation.country.countryId}">					
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:form>	
+		</b:jumbotron>  
 
 
 

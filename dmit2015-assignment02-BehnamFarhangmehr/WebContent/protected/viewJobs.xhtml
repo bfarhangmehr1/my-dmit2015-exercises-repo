@@ -16,10 +16,25 @@
 
 		<b:jumbotron>
 			<h1>List of Jobs</h1>
+			<b:messages id="messages"></b:messages>
+		<b:form id="jobsForm">
+			<b:dataTable value="#{currentJobController.jobs}"
+				var="currentJobs">
+				<b:dataTableColumn label="JobID" 
+					value="#{currentJobs.jobId}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Title" 
+					value="#{currentJobs.jobTitle}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="MaxSalary" >					
+					 $<h:outputText value="#{currentJobs.maxSalary}"/>
+				</b:dataTableColumn>
+				<b:dataTableColumn label="MinSalary">
+				 $<h:outputText value="#{currentJobs.minSalary}"/>							
+				</b:dataTableColumn>				
+				
+			</b:dataTable>
+		</b:form>			
 		</b:jumbotron>
-
-
-
 	</ui:define>
-
 </ui:composition>
