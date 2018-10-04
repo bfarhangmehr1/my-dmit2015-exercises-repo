@@ -26,11 +26,15 @@
 				<b:dataTableColumn label="Title" 
 					value="#{currentJobs.jobTitle}">
 				</b:dataTableColumn>
-				<b:dataTableColumn label="MaxSalary" >					
-					 $<h:outputText value="#{currentJobs.maxSalary}"/>
+				<b:dataTableColumn label="MaxSalary" data-order="#{currentJobs.maxSalary}" >					
+					 <h:outputText value="#{currentJobs.maxSalary}">
+					 <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+					 </h:outputText>
 				</b:dataTableColumn>
-				<b:dataTableColumn label="MinSalary">
-				 $<h:outputText value="#{currentJobs.minSalary}"/>							
+				<b:dataTableColumn label="MinSalary" data-order="#{currentJobs.minSalary}" >
+				 <h:outputText value="#{currentJobs.minSalary}">
+				 <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+				 </h:outputText>							
 				</b:dataTableColumn>				
 				
 			</b:dataTable>
