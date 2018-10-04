@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:f5="http://xmlns.jcp.org/jsf/passthrough"     
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:hf="http://highfaces.org"
+>     
+    <h:head>
+        <!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<title>Hello BootsFaces</title>		
+    </h:head>
+    <h:body>        
+       
+       <b:jumbotron> 
+       		<h1>Rectangle</h1>
+       		 <b:messages id="messages"></b:messages>
+       		  <b:form id="rectangleForm">
+       		<b:inputText id="length" 
+       			label="Rectangle Length" 
+       			placeholder="enter length of rectangle"
+       			value="#{rectangleContgroller.currentRectangle.length}">
+       			<b:focus></b:focus>
+       		</b:inputText>
+       		<b:inputText id="width" 
+       			label="Rectangle Width" 
+       			placeholder="enter width of rectangle"
+       			value="#{rectangleContgroller.currentRectangle.width}">
+       		</b:inputText>
+       		<b:commandButton value="Add Rectangle"
+       			ajax="true" update="messages rectangleForm:rectangleTable"
+       			actionListener="#{rectangleContgroller.addRectangle()}">
+       		</b:commandButton>
+       		
+       		<b:commandButton value="Generate Chart" 
+       			ajax="false"
+				actionListener="#{rectangleContgroller.createBar()}"
+       		/>
+       		
+       		<p:chart type="bar" model="#{rectangleContgroller.charts}" 
+       			style="height:400px;width=500px;"
+       			/>
+       		
+       		<b:dataTable id="rectangleTable"
+       			value="#{rectangleContgroller.arrayOfRectangle}"
+       			var="rect">
+       			<b:dataTableColumn label="Length" value="#{rect.length}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Width" value="#{rect.width}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Area" value="#{rect.area}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Perimeter" value="#{rect.perimeter}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Diagonal" value="#{rect.diagonal}">
+       			</b:dataTableColumn>
+       		</b:dataTable> 
+       </b:form>       		
+       </b:jumbotron>   
+    </h:body>
+</html>

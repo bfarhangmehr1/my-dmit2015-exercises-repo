@@ -3,7 +3,7 @@ package ca.nait.dmit.model;
 public class BMI {
     
 	 private int weight; 
-	   private int height;
+	 private int height;
 	   
 	   
 	public int getWeight() {
@@ -29,7 +29,7 @@ public class BMI {
 		this.height = height;
 	}   
 	   public double bmi() {
-		   return 703 * weight /Math.pow(height, 2);
+		   return Math.round((703 * weight /Math.pow(height, 2)) * 100.0) / 100.0;
 	   }
 	   public String bmiCategory() {
 		   String curentCategory = "Invalid Category";
