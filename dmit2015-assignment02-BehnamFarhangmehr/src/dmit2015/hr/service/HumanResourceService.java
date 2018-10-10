@@ -14,29 +14,42 @@ import dmit2015.hr.entity.Location;
 
 
 
+
 @Stateless 
 public class HumanResourceService {
   
 	@Inject
 	private EntityManager entityManager; 
-	  
-	public void addJob( Job newJob) {
-		
-		Query currentQuery = entityManager.createQuery("SELECT MAX(r.jobId) + 1 FROM Job r");
-		String nextjobId = (String) currentQuery.getSingleResult();
-		newJob.setJobId(nextjobId);
+	
+	public void addJob(Job newJob) {
 		entityManager.persist(newJob);
 	}
 	
+	public void updateJob(Job existingJob) {
+		entityManager.merge( existingJob );
+	}	
+	public void deleteJob(Job existingJob) throws Exception {
+		existingJob = entityManager.merge(existingJob);
+		if (existingJob.getJobHistories().size() > 0) {
+			throw new Exception("You are not allowed to delete a job with existing histories.");
+		}
+		entityManager.remove( existingJob );
+	}
+	
+	public Job findOneJob(String jobid) {
+		return entityManager.find(Job.class, jobid);	
+	}	
 	public List<Job> findAllJob(){
 		return entityManager.createQuery(
 				"SELECT j FROM Job j ORDER BY j.jobId", Job.class
 				).getResultList();
 	}
-	
 	public List<Location> findAllLocation(){
 		return entityManager.createQuery(
-				"SELECT l FROM Location l ORDER BY l.locationId", Location.class
+				"SELECT l FROM Location l ORDER BY l.locationId", Job.class
 				).getResultList();
 	}
+	
+	
+	
 }
