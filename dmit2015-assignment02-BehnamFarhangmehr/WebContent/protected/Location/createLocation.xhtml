@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:f5="http://xmlns.jcp.org/jsf/passthrough" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
+	template="/WEB-INF/templates/template-assignment02.xhtml">
+
+	<ui:param name="title" value="Job - Create" />
+
+	<ui:define name="maincontent">
+
+	<b:jumbotron>
+		<h1>LocationDetail new</h1>
+	</b:jumbotron>
+
+	<b:messages id="messages" />
+
+	<b:form>		
+		<b:inputText id="Street" 
+			label="Street Address"
+			value="#{newLocation.streetAddress}"
+			placeholder="Enter Street Address">
+		</b:inputText>
+
+		<b:inputText id="postalCode" 
+			label="Postal Code"
+			value="#{newLocation.postalCode}"
+			placeholder="Enter Postal Code">
+		</b:inputText>
+		<b:inputText id="City" 
+			label="City"
+			value="#{newLocation.city}"
+			placeholder="Enter city">
+		</b:inputText>
+		<b:inputText id="State" 
+			label="State province"
+			value="#{newLocation.stateProvince}"
+			placeholder="Enter Province">
+		</b:inputText>
+      <b:selectOneMenu id="contryId" value="#{locationCreateController.selectedCoontryId}"
+				label="Select Location Country">
+			<f:selectItem itemLabel="(Please select)" itemValue=""/>
+			<f:selectItems value="#{locationCreateController.retreiveAllCountry()}" 
+				var="country"
+				itemLabel="#{country.countryName}"
+				itemValue="#{country.countryId}" />
+		</b:selectOneMenu>
+					
+		<b:commandButton value="Add Location" 
+			icon-awesome="save"
+			look="primary"
+			actionListener="#{locationCreateController.createNewLocation()}">
+		</b:commandButton>
+			
+	</b:form>
+
+	</ui:define>
+
+</ui:composition>

@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import dmit2015.hr.entity.Country;
 import dmit2015.hr.entity.Job;
 import dmit2015.hr.entity.Location;
+
 
 
 
@@ -44,12 +46,36 @@ public class HumanResourceService {
 				"SELECT j FROM Job j ORDER BY j.jobId", Job.class
 				).getResultList();
 	}
-	public List<Location> findAllLocation(){
-		return entityManager.createQuery(
-				"SELECT l FROM Location l ORDER BY l.locationId", Job.class
-				).getResultList();
+	
+	public void addLocation(Location newLocation) {
+		entityManager.persist(newLocation);
 	}
 	
+	public void updateLocation(Location existingLocation) {
+		entityManager.merge( existingLocation );
+	}	
+	public void deleteLocation(Location existngLocation) throws Exception {
+		existngLocation = entityManager.merge(existngLocation);
+		if (existngLocation.getDepartments().size() > 0) {
+			throw new Exception("You are not allowed to delete a Location with existing Department.");
+		}
+		entityManager.remove( existngLocation );
+	}
+	
+	public Location findOneLocation(Long locationId) {
+		return entityManager.find(Location.class, locationId);	
+	}
+	
+	public List<Location> findAllLocation(){
+		return entityManager.createQuery(
+				"SELECT l FROM Location l ORDER BY l.locationId", Location.class
+				).getResultList();
+	}
+	public List<Country> findAllCountries() {
+		return entityManager.createQuery(
+			"FROM Country",Country.class
+			).getResultList();
+	}
 	
 	
 }

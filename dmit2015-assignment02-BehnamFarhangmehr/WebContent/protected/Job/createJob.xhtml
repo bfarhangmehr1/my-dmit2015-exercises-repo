@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:f5="http://xmlns.jcp.org/jsf/passthrough" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
+	template="/WEB-INF/templates/template-assignment02.xhtml">
+
+	<ui:param name="title" value="Job - Create" />
+
+	<ui:define name="maincontent">
+
+	<b:jumbotron>
+		<h1>JobDetail new</h1>
+	</b:jumbotron>
+
+	<b:messages id="messages" />
+
+	<b:form>		
+		<b:inputText id="jobID" 
+			label="Job ID"
+			value="#{newJob.jobId}"
+			placeholder="Enter job id">
+		</b:inputText>
+
+		<b:inputText id="JobTitle" 
+			label="Job Title"
+			value="#{newJob.jobTitle}"
+			placeholder="Enter job title">
+		</b:inputText>
+		<b:inputText id="minimumSalary" 
+			label="Minimum Salary"
+			value="#{newJob.minSalary}"
+			placeholder="Enter minimum salary">
+		</b:inputText>
+		<b:inputText id="maximumSalary" 
+			label="Maximum Salary"
+			value="#{newJob.maxSalary}"
+			placeholder="Enter maximum salary">
+		</b:inputText>
+					
+		<b:commandButton value="Add Job" 
+			icon-awesome="save"
+			look="primary"
+			actionListener="#{jobCreateController.createNewJob()}">
+		</b:commandButton>
+			
+	</b:form>
+
+	</ui:define>
+
+</ui:composition>

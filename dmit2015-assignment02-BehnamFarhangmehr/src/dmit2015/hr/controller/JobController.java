@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-
+import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,18 +27,21 @@ public class JobController implements Serializable {
 	@Inject
 	private HumanResourceService humanResourceService;
 	 
-	private List<Job> Jobs;
+	private List<Job> Jobs;    // +getter 
   
 	@PostConstruct
 	public void init() {
 		Jobs = humanResourceService.findAllJob();
 	}
 	
-	
+	@Produces
+	@Named
 	public List<Job> getJobs() {
 		return Jobs;
 	} 
-	
+//	public void onShipperListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Shipper shipper) {
+//	retreiveAllShippers();
+//}
 	
 	
 }

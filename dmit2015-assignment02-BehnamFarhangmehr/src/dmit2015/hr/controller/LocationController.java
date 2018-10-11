@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,8 +27,10 @@ public class LocationController implements Serializable{
 	@PostConstruct
 	public void init() {
 		Locations = humanResourceService.findAllLocation();
-	}	
+	}
 	
+	@Produces
+	@Named
 	public List<Location> getLocations() {
 		return Locations;
 	}
