@@ -2,6 +2,11 @@ package dmit2015.hr.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.List;
 
 
@@ -20,15 +25,19 @@ public class Location implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOCATIONS_LOCATIONID_GENERATOR")
 	@Column(name="LOCATION_ID")
 	private long locationId;
-
+    
+	@NotBlank(message="City is required")
+	@Size(max= 30, message=" City lenght must be less than 30 charactors.")
 	private String city;
 
 	@Column(name="POSTAL_CODE")
 	private String postalCode;
-
+	
+	@Size(max= 25, message=" State Province must be less than 25  charactors.")
 	@Column(name="STATE_PROVINCE")
 	private String stateProvince;
-
+	
+	@Size(max= 40, message=" Street Address must be less than 40 charactors.")
 	@Column(name="STREET_ADDRESS")
 	private String streetAddress;
 
@@ -37,6 +46,8 @@ public class Location implements Serializable {
 	private List<Department> departments;
 
 	//bi-directional many-to-one association to Country
+	@Valid
+	@NotNull(message="Country is required")
 	@ManyToOne
 	@JoinColumn(name="COUNTRY_ID")
 	private Country country;

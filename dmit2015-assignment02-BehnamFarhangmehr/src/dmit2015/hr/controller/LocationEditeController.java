@@ -6,7 +6,9 @@ import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import dmit2015.hr.entity.Location;
@@ -23,6 +25,8 @@ public class LocationEditeController implements Serializable {
 	@Produces
 	@Named
 	private Location exsitingLocation;
+	
+	@NotNull(message="Search value is required.")
 	private Long idQueryValue;
 
 	public Long getIdQueryValue() {
@@ -47,27 +51,40 @@ public class LocationEditeController implements Serializable {
 			Messages.addGlobalInfo("Query unsuccessful");
 		}
 	}
-	public void updateLocation() {
+	public String updateLocation() {
+		String nextPage = null;
 		try {
 			currentHumanResourceService.updateLocation(exsitingLocation);
 			Messages.addGlobalInfo("Update successful");
+			nextPage = "viewLocations?faces-redirect=true";
 		} catch (Exception e) {
 			Messages.addGlobalError("Update unsuccessful");			
 		}
+		return nextPage;
 	}
-	public void deleteLocation() {
+	public String deleteLocation() {
+		String nextPage = null;
 		try {
 			currentHumanResourceService.deleteLocation(exsitingLocation);
 			exsitingLocation = null;
 			idQueryValue = null;
 			Messages.addGlobalInfo("Delete successful");
+			nextPage = "viewLocations?faces-redirect=true";
 		} catch (Exception e) {
 			Messages.addGlobalError("Delete unsuccessful");			
 		}
+		return nextPage;
 	}
 	public void cancel() {
 		exsitingLocation = null;
 	}
 	
+	public void findByQueryParameterId() {
+		if (!Faces.isPostback() && !Faces.isValidationFailed() ) {
+			if (idQueryValue != null && exsitingLocation == null) {
+				findLocation();		
+			}
+		}
+	}
 	
 }

@@ -15,9 +15,13 @@
 	<ui:param name="title" value="Job - Edit" />
 
 	<ui:define name="maincontent">
-
+    		<f:metadata>
+			<f:viewParam name="id" value="#{locationEditeController.idQueryValue}" />
+			<f:event type="preRenderView"
+				listener="#{locationEditeController.findByQueryParameterId()}" />
+		</f:metadata>
 	<b:jumbotron>
-		<h1>LocationDetail edit</h1>
+		<h1>Location Detail edit</h1>
 	</b:jumbotron>
 
 	<b:messages id="messages" />
@@ -69,17 +73,20 @@
 					value="#{exsitingLocation.stateProvince}"
 					placeholder="Enter Province">
 				</b:inputText>
-				<b:inputText id="Contry" 
-					label="Select Location Contry""
-					value="#{exsitingLocation.country}"
-					placeholder="Enter your contry">
-				</b:inputText>
+				<b:selectOneMenu id="contryId" value="#{locationCreateController.selectedCoontryId}"
+				label="Select Location Country">
+			    <f:selectItem itemLabel="(Please select)" itemValue=""/>
+			    <f:selectItems value="#{locationCreateController.retreiveAllCountry()}" 
+				var="country"
+				itemLabel="#{country.countryName}"
+				itemValue="#{country.countryId}" />
+		        </b:selectOneMenu>
 				<b:commandButton value="Update" 
 					look="primary"
 					icon-awesome="save"
 					ajax="update" 
 					update="messages editForm:querySingleResultPanel"
-					actionListener="#{locationEditeController.updateLocation()}">
+					action="#{locationEditeController.updateLocation()}">
 				</b:commandButton>
 				
 				<b:commandButton value="Delete" 

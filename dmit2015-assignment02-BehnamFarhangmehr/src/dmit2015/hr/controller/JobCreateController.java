@@ -17,17 +17,13 @@ import dmit2015.hr.service.HumanResourceService;
 @Named
 @ViewScoped
 public class JobCreateController implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	
+	private static final long serialVersionUID = 1L;	
 	@Inject
 	private HumanResourceService currentHumanResourceService; 
 	
 	@Produces
-	@Named
-	
-	private Job newJob; 
-		
+	@Named	
+	private Job newJob; 		
 	@PostConstruct 
 	public void initnewJob() {
 		newJob = new Job();

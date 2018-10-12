@@ -5,17 +5,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
 
 import dmit2015.hr.entity.Country;
 import dmit2015.hr.entity.Job;
 import dmit2015.hr.entity.Location;
-
-
-
-
-
-
 
 @Stateless 
 public class HumanResourceService {
@@ -43,7 +37,7 @@ public class HumanResourceService {
 	}	
 	public List<Job> findAllJob(){
 		return entityManager.createQuery(
-				"SELECT j FROM Job j ORDER BY j.jobId", Job.class
+				"SELECT j FROM Job j ORDER BY j.jobTitle",Job.class
 				).getResultList();
 	}
 	

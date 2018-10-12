@@ -2,6 +2,8 @@ package dmit2015.hr.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,11 +19,14 @@ public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotBlank(message="JobId is required.")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="JOB_ID", columnDefinition="MEDIUMTEXT")
+	@Column(name="JOB_ID")
 	private String jobId;
-
-	@Column(name="JOB_TITLE", columnDefinition="MEDIUMTEXT")
+	
+    //columnDefinition="MEDIUMTEXT"
+	@NotBlank(message="Job Title is reqired.")
+	@Column(name="JOB_TITLE")
 	private String jobTitle;
 
 	@Column(name="MAX_SALARY")

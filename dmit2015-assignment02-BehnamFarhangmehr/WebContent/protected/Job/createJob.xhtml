@@ -17,7 +17,7 @@
 	<ui:define name="maincontent">
 
 	<b:jumbotron>
-		<h1>JobDetail new</h1>
+		<h1>New Job</h1>
 	</b:jumbotron>
 
 	<b:messages id="messages" />
@@ -44,7 +44,10 @@
 			value="#{newJob.maxSalary}"
 			placeholder="Enter maximum salary">
 		</b:inputText>
-					
+		<f:verbatim>
+			<f:validateWholeBean value="#{newJob}" />
+        </f:verbatim>			
+			<o:validateBean value="#{newJob}" />			
 		<b:commandButton value="Add Job" 
 			icon-awesome="save"
 			look="primary"

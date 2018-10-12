@@ -52,7 +52,12 @@
 				itemLabel="#{country.countryName}"
 				itemValue="#{country.countryId}" />
 		</b:selectOneMenu>
-					
+		
+<f:verbatim>
+			<f:validateWholeBean value="#{newLocation}" />
+</f:verbatim>			
+			
+			<o:validateBean value="#{newLocation}" />			
 		<b:commandButton value="Add Location" 
 			icon-awesome="save"
 			look="primary"
