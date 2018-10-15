@@ -13,9 +13,7 @@
 	template="/WEB-INF/templates/template-assignment02.xhtml">
 
 	<ui:param name="title" value="Job - Create" />
-
 	<ui:define name="maincontent">
-
 	<b:jumbotron>
 		<h1>New Job</h1>
 	</b:jumbotron>
@@ -28,7 +26,6 @@
 			value="#{newJob.jobId}"
 			placeholder="Enter job id">
 		</b:inputText>
-
 		<b:inputText id="JobTitle" 
 			label="Job Title"
 			value="#{newJob.jobTitle}"
@@ -43,11 +40,7 @@
 			label="Maximum Salary"
 			value="#{newJob.maxSalary}"
 			placeholder="Enter maximum salary">
-		</b:inputText>
-		<f:verbatim>
-			<f:validateWholeBean value="#{newJob}" />
-        </f:verbatim>			
-			<o:validateBean value="#{newJob}" />			
+		</b:inputText>					
 		<b:commandButton value="Add Job" 
 			icon-awesome="save"
 			look="primary"
@@ -58,6 +51,10 @@
 			update="messages createForm" immediate="true"
 			actionListener="#{jobCreateController.cancel()}">
 		</b:commandButton>
+		<f:verbatim>
+			<f:validateWholeBean value="#{newJob}" />
+       </f:verbatim>		
+			<o:validateBean value="#{newJob}" />
 	</b:form>
 
 	</ui:define>

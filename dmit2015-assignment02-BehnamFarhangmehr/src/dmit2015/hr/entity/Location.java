@@ -15,6 +15,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Valid
 @Table(name="LOCATIONS")
 @NamedQuery(name="Location.findAll", query="SELECT l FROM Location l")
 public class Location implements Serializable {

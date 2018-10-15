@@ -2,8 +2,11 @@ package dmit2015.hr.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import dmit2015.hr.service.ValidMaxSalary;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,15 +17,13 @@ import java.util.List;
  * 
  */
 @Entity
+@ValidMaxSalary
 @Table(name="JOBS")
 @NamedQuery(name="Job.findAll", query="SELECT j FROM Job j")
 public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	//@SequenceGenerator(name="JOBS_JOBSID_GENERATOR", sequenceName="JOBS_SEQ")
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="JOBS_JOBSID_GENERATOR")
+	@Id		
 	@NotBlank(message="Job Id is required.")
 	@Size(max=10, message="Job ID must be 10 charactor in lenght.")
 	@Column(name="JOB_ID")
@@ -33,7 +34,7 @@ public class Job implements Serializable {
 	@Size(max=35, message="Job Title must be 35 charactor in lenght.")
 	@Column(name="JOB_TITLE")	
 	private String jobTitle;
-
+   
 	@Column(name="MAX_SALARY")
 	private BigDecimal maxSalary;
 

@@ -31,6 +31,7 @@ public class JobCreateController implements Serializable {
 	
 	public void createNewJob() {
 		try {
+		
 			currentHumanResourceService.addJob(newJob);
 			initnewJob();
 			Messages.addGlobalInfo("Add successful");
