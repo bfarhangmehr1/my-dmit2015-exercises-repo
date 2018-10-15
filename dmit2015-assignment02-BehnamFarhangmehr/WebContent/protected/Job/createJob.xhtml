@@ -22,7 +22,7 @@
 
 	<b:messages id="messages" />
 
-	<b:form>		
+	<b:form id="createForm">		
 		<b:inputText id="jobID" 
 			label="Job ID"
 			value="#{newJob.jobId}"
@@ -53,7 +53,11 @@
 			look="primary"
 			actionListener="#{jobCreateController.createNewJob()}">
 		</b:commandButton>
-			
+		 <b:commandButton value="Cancel" look="default"
+			icon-awesome="cancel" ajax="false"
+			update="messages createForm" immediate="true"
+			actionListener="#{jobCreateController.cancel()}">
+		</b:commandButton>
 	</b:form>
 
 	</ui:define>

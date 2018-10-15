@@ -39,5 +39,8 @@ public class JobCreateController implements Serializable {
 		}
 	
 	}
+	public void cancel() {
+		newJob = null;
+	}
 	
 }
