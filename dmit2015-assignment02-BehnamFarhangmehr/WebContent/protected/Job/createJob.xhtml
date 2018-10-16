@@ -23,7 +23,7 @@
 	<b:form id="createForm">		
 		<b:inputText id="jobID" 
 			label="Job ID"
-			value="#{newJob.jobId}"
+			value="#{newJob.jobId}"			
 			placeholder="Enter job id">
 		</b:inputText>
 		<b:inputText id="JobTitle" 
@@ -40,10 +40,13 @@
 			label="Maximum Salary"
 			value="#{newJob.maxSalary}"
 			placeholder="Enter maximum salary">
-		</b:inputText>					
+		</b:inputText>	         	
+		 <o:validateBean value="#{newJob}" />   
+							
 		<b:commandButton value="Add Job" 
 			icon-awesome="save"
 			look="primary"
+			update="messages createForm" immediate="true"
 			actionListener="#{jobCreateController.createNewJob()}">
 		</b:commandButton>
 		 <b:commandButton value="Cancel" look="default"
@@ -51,10 +54,7 @@
 			update="messages createForm" immediate="true"
 			actionListener="#{jobCreateController.cancel()}">
 		</b:commandButton>
-		<f:verbatim>
-			<f:validateWholeBean value="#{newJob}" />
-       </f:verbatim>		
-			<o:validateBean value="#{newJob}" />
+    
 	</b:form>
 
 	</ui:define>

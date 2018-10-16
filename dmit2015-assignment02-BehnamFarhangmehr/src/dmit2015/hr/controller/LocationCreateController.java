@@ -54,5 +54,8 @@ public class LocationCreateController implements Serializable {
 	public void setSelectedCoontryId(String selectedCoontryId) {
 		this.selectedCoontryId = selectedCoontryId;
 	}
+	public void cancel() {
+		newLocation = null;
+	}
 	
 	}

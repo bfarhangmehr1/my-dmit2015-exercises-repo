@@ -28,17 +28,17 @@ public class Location implements Serializable {
 	private long locationId;
     
 	@NotBlank(message="City is required")
-	@Size(max= 30, message=" City lenght must be less than 30 charactors.")
+	@Size(max= 30, message=" the city'${validatedValue}'can not exceed more than {max} charactors.")
 	private String city;
 
 	@Column(name="POSTAL_CODE")
 	private String postalCode;
 	
-	@Size(max= 25, message=" State Province must be less than 25  charactors.")
+	@Size(max= 25, message=" State Province '${validatedValue}'can not exceed more than {max} charactors.")
 	@Column(name="STATE_PROVINCE")
 	private String stateProvince;
 	
-	@Size(max= 40, message=" Street Address must be less than 40 charactors.")
+	@Size(max= 40, message=" Street Address'${validatedValue}'can not exceed more than {max} charactors.")
 	@Column(name="STREET_ADDRESS")
 	private String streetAddress;
 

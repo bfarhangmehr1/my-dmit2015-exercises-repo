@@ -2,7 +2,7 @@ package dmit2015.hr.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.Valid;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -23,15 +23,16 @@ import java.util.List;
 public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id		
+	@Id	
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@NotBlank(message="Job Id is required.")
-	@Size(max=10, message="Job ID must be 10 charactor in lenght.")
+	@Size(max=10, message="Job ID can not exceed more than {max} charactores.")	
 	@Column(name="JOB_ID")
 	private String jobId;
 	
     //columnDefinition="MEDIUMTEXT"
 	@NotBlank(message="Job Title is reqired.")
-	@Size(max=35, message="Job Title must be 35 charactor in lenght.")
+	@Size(max=35, message="Job Title '${validatedValue}' can not exceed more than {max} charactors.")
 	@Column(name="JOB_TITLE")	
 	private String jobTitle;
    

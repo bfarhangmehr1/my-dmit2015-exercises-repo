@@ -21,7 +21,8 @@
 				<b:dataTable value="#{currentLocationController.locations}"
 					var="currentLocation">
 					<b:dataTableColumn label="LocationID"
-						value="#{currentLocation.locationId}">
+						value="#{currentLocation.locationId}" 
+						readonly ="true">
 					</b:dataTableColumn>
 					<b:dataTableColumn label="Street Address"
 						value="#{currentLocation.streetAddress}">

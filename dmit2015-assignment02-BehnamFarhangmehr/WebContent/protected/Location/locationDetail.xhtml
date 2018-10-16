@@ -47,7 +47,7 @@
 				rendered="#{exsitingLocation != null ? 'true' : 'false'}"> 
 				
 				<b:inputText id="locationId" 
-					label="LocationID" 
+					label="LocationID (Read Only)" 
 					readonly="true"
 					value="#{exsitingLocation.locationId}">
 				</b:inputText>
@@ -109,7 +109,11 @@
 				
 			</b:panel>
 		</p:outputPanel>	
-		
+					<f:validateWholeBean value="#{exsitingLocation}" />
+</f:verbatim>			
+			
+			<o:validateBean value="#{exsitingLocation}" />				
+	</b:form>
 				
 	</b:form>
 

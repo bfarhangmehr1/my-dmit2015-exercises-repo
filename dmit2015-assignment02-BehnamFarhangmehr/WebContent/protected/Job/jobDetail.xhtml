@@ -42,7 +42,7 @@
 				<b:panel title="Job Details"
 					rendered="#{existingJob != null ? 'true' : 'false'}">
 
-					<b:inputText id="jobId" label="JobID" readonly="true"
+					<b:inputText id="jobId" label="JobID (Read Only)" readonly="true"
 						value="#{existingJob.jobId}">
 					</b:inputText>
 
@@ -75,11 +75,10 @@
 						update="messages editForm:querySingleResultPanel" immediate="true"
 						actionListener="#{jobEditController.cancel()}">
 					</b:commandButton>
-
-				</b:panel>
-				<f:verbatim>
-		  	         <f:validateWholeBean value="#{existingJob}" />
-               </f:verbatim>	
+				</b:panel>	
+			<f:verbatim>
+			<f:validateWholeBean value="#{newJob}" />
+          </f:verbatim>	
 			       <o:validateBean value="#{existingJob}" />
 			</p:outputPanel>
 
