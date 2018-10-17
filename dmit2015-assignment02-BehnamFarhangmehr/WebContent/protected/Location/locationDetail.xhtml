@@ -39,7 +39,7 @@
 			icon-awesome="search"
 			look="info"
 			ajax="true" update="messages editForm:querySingleResultPanel"
-			actionListener="#{jobEditController.findJob()}">
+			actionListener="#{locationEditeController.findLocation()}">
 		</b:commandButton>
 		
 		<p:outputPanel id="querySingleResultPanel">
@@ -73,7 +73,7 @@
 					value="#{exsitingLocation.stateProvince}"
 					placeholder="Enter Province">
 				</b:inputText>
-				<b:selectOneMenu id="contryId" value="#{locationCreateController.selectedCoontryId}"
+				<b:selectOneMenu id="contryId" value="#{locationCreateController.selectedCountryId}"
 				label="Select Location Country">
 			    <f:selectItem itemLabel="(Please select)" itemValue=""/>
 			    <f:selectItems value="#{locationCreateController.retreiveAllCountry()}" 
@@ -105,16 +105,10 @@
 					update="messages editForm:querySingleResultPanel"
 					immediate="true"
 					actionListener="#{locationEditeController.cancel()}">
-				</b:commandButton>
-				
+				</b:commandButton>				
 			</b:panel>
 		</p:outputPanel>	
-					<f:validateWholeBean value="#{exsitingLocation}" />
-</f:verbatim>			
-			
-			<o:validateBean value="#{exsitingLocation}" />				
-	</b:form>
-				
+						
 	</b:form>
 
 	</ui:define>

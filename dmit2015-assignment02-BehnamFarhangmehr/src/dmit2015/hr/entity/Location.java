@@ -15,7 +15,6 @@ import java.util.List;
  * 
  */
 @Entity
-@Valid
 @Table(name="LOCATIONS")
 @NamedQuery(name="Location.findAll", query="SELECT l FROM Location l")
 public class Location implements Serializable {
@@ -47,7 +46,7 @@ public class Location implements Serializable {
 	private List<Department> departments;
 
 	//bi-directional many-to-one association to Country
-	@Valid
+	
 	@NotNull(message="Country is required")
 	@ManyToOne
 	@JoinColumn(name="COUNTRY_ID")
@@ -117,7 +116,8 @@ public class Location implements Serializable {
 
 		return department;
 	}
-
+	
+	
 	public Country getCountry() {
 		return this.country;
 	}

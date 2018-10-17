@@ -14,9 +14,11 @@ import org.omnifaces.util.Messages;
 
 import dmit2015.hr.entity.Job;
 import dmit2015.hr.service.HumanResourceService;
+import dmit2015.hr.service.ValidMaxSalary;
 
 @Named
 @ViewScoped
+@ValidMaxSalary
 public class JobEditController implements Serializable {
 	private static final long serialVersionUID = 1L;
 

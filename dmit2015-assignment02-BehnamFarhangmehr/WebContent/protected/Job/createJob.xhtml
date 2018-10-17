@@ -40,21 +40,21 @@
 			label="Maximum Salary"
 			value="#{newJob.maxSalary}"
 			placeholder="Enter maximum salary">
-		</b:inputText>	         	
-		 <o:validateBean value="#{newJob}" />   
+		</b:inputText>	 
+		        	
 							
 		<b:commandButton value="Add Job" 
 			icon-awesome="save"
 			look="primary"
-			update="messages createForm" immediate="true"
+			update="messages createForm" 
 			actionListener="#{jobCreateController.createNewJob()}">
 		</b:commandButton>
 		 <b:commandButton value="Cancel" look="default"
 			icon-awesome="cancel" ajax="false"
 			update="messages createForm" immediate="true"
 			actionListener="#{jobCreateController.cancel()}">
-		</b:commandButton>
-    
+		</b:commandButton>	
+		 <o:validateBean value="#{newJob}" />     
 	</b:form>
 
 	</ui:define>

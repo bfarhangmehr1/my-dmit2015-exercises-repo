@@ -72,6 +72,10 @@ public class HumanResourceService {
 			"FROM Country",Country.class
 			).getResultList();
 	}
+	public Country findOneConuntry(String countryId) {
+		return entityManager.find(Country.class, countryId);	
+	}
+	
 	
 	
 }

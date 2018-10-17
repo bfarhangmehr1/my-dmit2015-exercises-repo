@@ -12,7 +12,6 @@ import java.util.List;
  * 
  */
 @Entity
-@Valid
 @Table(name="COUNTRIES")
 @NamedQuery(name="Country.findAll", query="SELECT c FROM Country c")
 public class Country implements Serializable {

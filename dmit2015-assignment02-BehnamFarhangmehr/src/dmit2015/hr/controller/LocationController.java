@@ -9,7 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
+import dmit2015.hr.entity.Country;
 import dmit2015.hr.entity.Location;
 import dmit2015.hr.service.HumanResourceService;
 
@@ -23,6 +23,7 @@ public class LocationController implements Serializable{
 	private HumanResourceService humanResourceService;
 	
 	private List<Location> Locations;
+	
 	  
 	@PostConstruct
 	public void init() {
@@ -34,5 +35,7 @@ public class LocationController implements Serializable{
 	public List<Location> getLocations() {
 		return Locations;
 	}
+
+
 
 }

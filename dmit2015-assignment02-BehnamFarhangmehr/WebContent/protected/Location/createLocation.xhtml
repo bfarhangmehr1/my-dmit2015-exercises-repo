@@ -44,7 +44,7 @@
 			value="#{newLocation.stateProvince}"
 			placeholder="Enter Province">
 		</b:inputText>
-      <b:selectOneMenu id="contryId" value="#{locationCreateController.selectedCoontryId}"
+      <b:selectOneMenu id="countryId" value="#{locationCreateController.selectedCountryId}"
 				label="Select Location Country">
 			<f:selectItem itemLabel="(Please select)" itemValue=""/>
 			<f:selectItems value="#{locationCreateController.retreiveAllCountry()}" 
@@ -55,8 +55,7 @@
 		<b:commandButton value="Add Location" 
 			icon-awesome="save"
 			look="primary"
-			update="messages createForm:querySingleResultPanel"
-			ajax="true"
+			update="messages createForm"			
 			actionListener="#{locationCreateController.createNewLocation()}">
 		</b:commandButton>
 		<b:commandButton value="Cancel" 
@@ -67,11 +66,12 @@
 					immediate="true"
 					actionListener="#{locationCreateController.cancel()}">
 				</b:commandButton>
-				<f:verbatim>
+				
+				<f:verbatim>				
 			<f:validateWholeBean value="#{newLocation}" />
-</f:verbatim>			
-			
-			<o:validateBean value="#{newLocation}" />				
+			<o:validateBean value="#{newLocation}" />		
+             </f:verbatim>			
+					
 	</b:form>
 
 	</ui:define>

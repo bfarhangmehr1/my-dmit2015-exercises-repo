@@ -8,6 +8,8 @@ import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.omnifaces.util.Messages;
 
@@ -25,8 +27,9 @@ public class LocationCreateController implements Serializable {
 	
 	@Inject
 	private HumanResourceService currentHumanResourceService;
-	 
-	private String selectedCoontryId;	// +getter +setter
+	
+	@NotBlank(message="country must be selected.")
+	private String selectedCountryId;	// +getter +setter
 	@Produces
 	@Named
 	private Location newLocation;     
@@ -34,9 +37,14 @@ public class LocationCreateController implements Serializable {
 	@PostConstruct
 	public void initnewLocation() {
 		newLocation = new Location();
+		
 	}
 	public void createNewLocation() {
 		try {
+			if(selectedCountryId !=null && !selectedCountryId.isEmpty()) {
+				Country country = currentHumanResourceService.findOneConuntry(selectedCountryId);
+				newLocation.setCountry(country);
+			}
 			currentHumanResourceService.addLocation(newLocation);
 			initnewLocation();
 			Messages.addGlobalError("Add successful");
@@ -48,11 +56,11 @@ public class LocationCreateController implements Serializable {
 		return currentHumanResourceService.findAllCountries();
 	}
 	
-	public String getSelectedCoontryId() {
-		return selectedCoontryId;
+	public String getSelectedCountryId() {
+		return selectedCountryId;
 	}
-	public void setSelectedCoontryId(String selectedCoontryId) {
-		this.selectedCoontryId = selectedCoontryId;
+	public void setSelectedCountryId(String selectedCountryId) {
+		this.selectedCountryId = selectedCountryId;
 	}
 	public void cancel() {
 		newLocation = null;
