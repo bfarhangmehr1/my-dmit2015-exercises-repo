@@ -14,11 +14,11 @@ import org.omnifaces.util.Messages;
 
 import dmit2015.hr.entity.Job;
 import dmit2015.hr.service.HumanResourceService;
-import dmit2015.hr.service.ValidMaxSalary;
+
 
 @Named
 @ViewScoped
-@ValidMaxSalary
+
 public class JobEditController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -62,6 +62,8 @@ public class JobEditController implements Serializable {
 			nextPage = "viewJobs?faces-redirect=true";
 		} catch (Exception e) {
 			Messages.addGlobalError("Update unsuccessful");
+				
+			
 		}
 		return nextPage;
 	}
@@ -74,8 +76,10 @@ public class JobEditController implements Serializable {
 			idQueryValue = null;
 			Messages.addGlobalInfo("Delete successful");
 			nextPage = "viewJobs?faces-redirect=true";
-		} catch (Exception e) {
-			Messages.addGlobalError("Delete unsuccessful");
+		} catch (Exception e ) {
+			Messages.addGlobalInfo("Delete unsuccessful");
+			//Messages.addGlobalError("{0}", e.getMessage());		
+			
 		}
 		return nextPage;
 	}

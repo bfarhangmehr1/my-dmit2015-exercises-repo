@@ -6,11 +6,13 @@ import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
+import dmit2015.hr.entity.Country;
 import dmit2015.hr.entity.Location;
 import dmit2015.hr.service.HumanResourceService;
 
@@ -28,7 +30,10 @@ public class LocationEditeController implements Serializable {
 	
 	@NotNull(message="Search value is required.")
 	private Long idQueryValue;
-
+    
+	@NotBlank(message="country must be selected.")
+	private String selectedCountryId;
+	
 	public Long getIdQueryValue() {
 		return idQueryValue;
 	}
@@ -46,7 +51,7 @@ public class LocationEditeController implements Serializable {
 			} else {
 				Messages.addGlobalInfo("Query unsuccessful");
 			}					
-			Messages.addGlobalInfo("Query successful");
+			//Messages.addGlobalInfo("Query successful");
 		}catch( Exception e){
 			Messages.addGlobalInfo("Query unsuccessful");
 		}
@@ -54,11 +59,16 @@ public class LocationEditeController implements Serializable {
 	public String updateLocation() {
 		String nextPage = null;
 		try {
+			if(selectedCountryId !=null && !selectedCountryId.isEmpty()) {
+				Country country = currentHumanResourceService.findOneConuntry(selectedCountryId);
+				exsitingLocation.setCountry(country);
+			}
 			currentHumanResourceService.updateLocation(exsitingLocation);
 			Messages.addGlobalInfo("Update successful");
 			nextPage = "viewLocations?faces-redirect=true";
 		} catch (Exception e) {
-			Messages.addGlobalError("Update unsuccessful");			
+			Messages.addGlobalError("Update unsuccessful");	
+			//Messages.addGlobalError("{0}", e.getMessage());	
 		}
 		return nextPage;
 	}
@@ -70,8 +80,10 @@ public class LocationEditeController implements Serializable {
 			idQueryValue = null;
 			Messages.addGlobalInfo("Delete successful");
 			nextPage = "viewLocations?faces-redirect=true";
-		} catch (Exception e) {
-			Messages.addGlobalError("Delete unsuccessful");			
+		}catch (Exception e) {
+			Messages.addGlobalInfo("Delete unsuccessful");
+			//Messages.addGlobalError("{0}", e.getMessage());	
+						
 		}
 		return nextPage;
 	}
@@ -85,6 +97,14 @@ public class LocationEditeController implements Serializable {
 				findLocation();		
 			}
 		}
+	}
+
+	public String getSelectedCountryId() {
+		return selectedCountryId;
+	}
+
+	public void setSelectedCountryId(String selectedCountryId) {
+		this.selectedCountryId = selectedCountryId;
 	}
 	
 }

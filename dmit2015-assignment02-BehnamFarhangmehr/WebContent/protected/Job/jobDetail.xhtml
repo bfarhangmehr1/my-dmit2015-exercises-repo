@@ -75,14 +75,9 @@
 						update="messages editForm:querySingleResultPanel" immediate="true"
 						actionListener="#{jobEditController.cancel()}">
 					</b:commandButton>
-				</b:panel>	
-			<f:verbatim>
-			<f:validateWholeBean value="#{newJob}" />
-          </f:verbatim>	
-			       <o:validateBean value="#{existingJob}" />
+				</b:panel>			     
 			</p:outputPanel>
-
-
+            <o:validateBean value="#{existingJob}" />
 		</b:form>
 
 	</ui:define>

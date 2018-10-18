@@ -28,9 +28,7 @@ public class HumanResourceService {
 		existingJob = entityManager.merge(existingJob);
 		if (existingJob.getJobHistories().size()>0) {
 			throw new Exception("You are not allowed to delete a job with existing histories.");
-		} if (existingJob.getEmployees().size()> 0) {
-			throw new Exception("You are not allowed to delete a job with existing employee.");
-		}
+		} 
 		entityManager.remove( existingJob );
 	}
 	
