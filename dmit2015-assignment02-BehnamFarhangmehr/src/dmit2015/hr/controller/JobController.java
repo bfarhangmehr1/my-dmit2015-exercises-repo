@@ -14,10 +14,6 @@ import javax.inject.Named;
 import dmit2015.hr.entity.Job;
 import dmit2015.hr.service.HumanResourceService;
 
-
-
-
-
 @Named("currentJobController")
 @ViewScoped
 public class JobController implements Serializable {

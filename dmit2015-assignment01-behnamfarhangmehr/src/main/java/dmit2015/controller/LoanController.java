@@ -39,11 +39,7 @@ public class LoanController implements Serializable {
 		Axis xAxis = loanChart.getAxis(AxisType.X);
 		xAxis.setLabel("Amoritization In Year");		
 		Axis yAxis = loanChart.getAxis(AxisType.Y);
-		yAxis.setLabel("Mortgage Amount");		
-		
-		
-		
-		
+		yAxis.setLabel("Mortgage Amount");	
 
 	}
 

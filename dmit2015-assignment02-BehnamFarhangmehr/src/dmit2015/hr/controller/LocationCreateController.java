@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBAccessException;
 import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -48,7 +49,9 @@ public class LocationCreateController implements Serializable {
 			currentHumanResourceService.addLocation(newLocation);
 			initnewLocation();
 			Messages.addGlobalError("Add successful");
-		}catch (Exception e) {
+		} catch(EJBAccessException e) {
+			Messages.addGlobalError(e.getMessage());
+		} catch (Exception e) {
 			Messages.addGlobalError("Add unsuccessful");			
 		}	
 	}

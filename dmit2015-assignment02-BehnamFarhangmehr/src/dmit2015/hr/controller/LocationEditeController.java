@@ -2,6 +2,7 @@ package dmit2015.hr.controller;
 
 import java.io.Serializable;
 
+import javax.ejb.EJBAccessException;
 import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -51,8 +52,10 @@ public class LocationEditeController implements Serializable {
 			} else {
 				Messages.addGlobalInfo("Query unsuccessful");
 			}					
-			//Messages.addGlobalInfo("Query successful");
-		}catch( Exception e){
+			
+		} catch(EJBAccessException e) {
+			Messages.addGlobalError(e.getMessage());
+		} catch( Exception e){
 			Messages.addGlobalInfo("Query unsuccessful");
 		}
 	}

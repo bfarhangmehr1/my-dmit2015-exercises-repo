@@ -49,4 +49,79 @@
     <extension>woff2</extension>
     <mime-type>font/woff2</mime-type>
   </mime-mapping>
+  
+  <!-- Security role  -->
+  
+  <security-role>
+		<role-name>DMIT2015Instructor</role-name>
+	</security-role>
+ 	<security-role>
+		<role-name>DMIT2015Student</role-name>
+	</security-role>
+	<security-role>
+		<role-name>PROG_DMIT</role-name>
+	</security-role>
+  
+  <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>ViewJobsStart</web-resource-name>
+			<url-pattern>/protected/Job/viewJobs.xhtml</url-pattern>			
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+	</security-constraint>
+  
+   <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>CreateStart</web-resource-name>
+			<url-pattern>/protected/Job/createJob.xhtml</url-pattern>	
+			<url-pattern>/protected/Location/createLocation.xhtml</url-pattern>			
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>DMIT2015Instructor</role-name>
+			<role-name>DMIT2015Student</role-name>
+			<role-name>PROG_DMIT</role-name>
+		</auth-constraint>
+	</security-constraint> 
+	
+	 <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>EditStart</web-resource-name>
+			<url-pattern>/protected/Job/jobDetail.xhtml</url-pattern>	
+			<url-pattern>/protected/Location/locationDetail.xhtml</url-pattern>			
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>DMIT2015Instructor</role-name>
+			<role-name>DMIT2015Student</role-name>
+			<role-name>PROG_DMIT</role-name>
+		</auth-constraint>
+	</security-constraint> 
+	
+	<security-constraint>
+      <display-name>Use HTTPS only</display-name>
+        <web-resource-collection>
+         <web-resource-name>sslResources</web-resource-name>
+        <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+       <user-data-constraint>
+       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+       </user-data-constraint>
+       </security-constraint>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/errorpages/500.xhtml</location>
+	</error-page>
+	
+	<error-page>
+     <error-code>401</error-code>
+     <location>/WEB-INF/errorpages/401.xhtml</location>
+     </error-page>
+     
+     <error-page>
+         <error-code>403</error-code>
+      <location>/WEB-INF/errorpages/401.xhtml</location>
+        </error-page>
+  
 </web-app>

@@ -2,6 +2,7 @@ package dmit2015.hr.controller;
 
 import java.io.Serializable;
 
+import javax.ejb.EJBAccessException;
 import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -76,9 +77,11 @@ public class JobEditController implements Serializable {
 			idQueryValue = null;
 			Messages.addGlobalInfo("Delete successful");
 			nextPage = "viewJobs?faces-redirect=true";
+		}  catch(EJBAccessException e) {
+			Messages.addGlobalError(e.getMessage());
 		} catch (Exception e ) {
 			Messages.addGlobalInfo("Delete unsuccessful");
-			//Messages.addGlobalError("{0}", e.getMessage());		
+					
 			
 		}
 		return nextPage;

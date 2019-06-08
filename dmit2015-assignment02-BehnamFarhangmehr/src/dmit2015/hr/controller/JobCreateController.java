@@ -3,6 +3,7 @@ package dmit2015.hr.controller;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBAccessException;
 import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -29,13 +30,18 @@ public class JobCreateController implements Serializable {
 		newJob = new Job();
 	}
 	
+	
+	
+	
 	public void createNewJob() {
 		try {
 		
 			currentHumanResourceService.addJob(newJob);
 			initnewJob();
 			Messages.addGlobalInfo("Add successful");
-		}catch (Exception e) {
+		} catch(EJBAccessException e) {
+			Messages.addGlobalError(e.getMessage());
+		} catch (Exception e) {
 			Messages.addGlobalError("Add unsuccessful");			
 		}
 	

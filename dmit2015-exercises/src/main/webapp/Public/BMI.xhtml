@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:f5="http://xmlns.jcp.org/jsf/passthrough"     
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:hf="http://highfaces.org"
+>     
+    <h:head>
+        <!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<title>Hello BootsFaces</title>		
+    </h:head>
+    <h:body>       
+
+       <b:jumbotron> 
+       		<h1>Body Mass Index</h1>
+       		 <b:messages id="messages"></b:messages>
+       		  <b:form id="bmiForm">
+       		<b:inputText id="height" 
+       			label="Height" 
+       			placeholder="enter your height"
+       			value="#{bMIController.currentBMI.height}">
+       			<b:focus></b:focus>
+       		</b:inputText>
+       		<b:inputText id="weight" 
+       			label="Weight" 
+       			placeholder="enter your weight"
+       			value="#{bMIController.currentBMI.weight}">
+       		</b:inputText>
+       		<b:commandButton value="Add BMI"
+       			ajax="true" update="messages bmiForm: bmiTable"
+       			actionListener="#{bMIController.addedbmi()}">
+       		</b:commandButton>
+       		
+       		<b:commandButton value="Generate Chart" 
+       			ajax="false"
+				actionListener="#{bMIController.graph()}"
+       		/>
+       		
+       		<p:chart type="bar" model="#{bMIController.charts}" 
+       			style="height:400px;width=500px;"
+       			/>
+       		
+       		<b:dataTable id="bmiTable"
+       			value="#{bMIController.arraysOfBmi}"
+       			var="bbmi">
+       			<b:dataTableColumn label="Height" value="#{bbmi.height}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Weight" value="#{bbmi.weight}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="BMI" value="#{bbmi.bmi()}">
+       			</b:dataTableColumn>
+       			<b:dataTableColumn label="Category" value="#{bbmi.bmiCategory()}">
+       			</b:dataTableColumn>
+
+
+       		</b:dataTable> 
+       </b:form>
+
+       </b:jumbotron> 
+    </h:body>
+</html>
