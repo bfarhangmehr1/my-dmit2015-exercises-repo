@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="omnifaces-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/omnifaces-3.2/omnifaces-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="dmit2015-assignment01-start"/>
         <property name="java-output-path" value="/dmit2015-assignment01-start/target/classes"/>
     </wb-module>

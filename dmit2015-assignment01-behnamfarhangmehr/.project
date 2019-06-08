@@ -3,6 +3,7 @@
 	<name>dmit2015-assignment01-start</name>
 	<comment></comment>
 	<projects>
+		<project>omnifaces-3.2</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

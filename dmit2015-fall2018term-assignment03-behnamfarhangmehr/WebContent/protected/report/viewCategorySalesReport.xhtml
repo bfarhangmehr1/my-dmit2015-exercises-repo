@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:f5="http://xmlns.jcp.org/jsf/passthrough" 	
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
+	template="/WEB-INF/templates/template-assignment03.xhtml">
+
+	<ui:param name="title" value="#{text['page_viewCategorySalesReport.title']}" />
+
+	<ui:define name="maincontent">
+
+		<b:jumbotron>
+			<h1>#{text['page_viewCategorySalesReport.title']}</h1>
+		</b:jumbotron>
+
+		<b:messages id="messages" />
+		  
+		<b:form>	
+          <p:outputLabel for="parentCategory" value="Parent Category:" />
+  			<h:selectOneMenu id="parentCategory" value="#{categorySalesReportController.selectedCategoryId}" 
+  				styleClass="form-control"
+				label="Parent Category"
+				>
+				<p:ajax event="change" update="reportOutputPanel" listener="#{categorySalesReportController.generateReport()}" />				
+				<f:selectItems value="#{categorySalesReportController.retreiveOnlineCatalogCategories()}" var="parent"
+					itemLabel="#{parent.categoryName}"
+					itemValue="#{parent.categoryId}" />
+  			</h:selectOneMenu>
+  		    <p:outputLabel for="year" value="Report Year:" />
+  			<h:selectOneMenu id="year" value="#{categorySalesReportController.selectedYear}" 
+  				styleClass="form-control"
+				label="Report Year"
+				>
+				<p:ajax event="change" update="reportOutputPanel" listener="#{categorySalesReportController.generateReport()}" />
+				<f:selectItem itemLabel="All Years" itemValue="" />
+				<f:selectItems value="#{categorySalesReportController.retreiveYearsWithOrders()}" var="year"
+					itemLabel="#{year}"
+					itemValue="#{year}" />
+  			</h:selectOneMenu>
+  			 <p:outputPanel id="reportOutputPanel">
+             <hf:chart id="barchart" type="bar" title="#{categorySalesReportController.reportTitle}"
+					height="600px"
+					yaxisLabel="Category Name" xaxisLabel="Category Sale">
+					<hf:chartSerie name="Category Sales" 
+						value="#{categorySalesReportController.categorySales}" var="point" 
+						point="#{point.categorySalesTotal}" 
+						tickLabel="#{point.categoryName}" 		
+						dataLabel="{point.y}"	
+						colorByPoint="true"
+					/>
+				</hf:chart>
+              </p:outputPanel>
+		</b:form>
+
+	</ui:define>
+
+</ui:composition>
